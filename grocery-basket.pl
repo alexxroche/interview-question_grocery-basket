@@ -18,7 +18,6 @@ Tools used to get the answer
 my $install_rust = 'curl --proto \'=https\' --tlsv1.2 -sSf https://sh.rustup.rs | sh';
 my $answer_repo = 'git@github.com:alexxroche/interview-question_grocery-basket.git';
 
-
 =head2 getopts_short
 
 Always leave a reminder of the API that you had in your head while writing

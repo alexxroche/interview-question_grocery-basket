@@ -14,4 +14,4 @@ which perl && ./grocery-basket.pl || echo "[e] Unable to locate perl5. Maybe rew
 curl -sL https://raw.githubusercontent.com/alexxroche/interview-question_grocery-basket/master/grocery-basket.pl | perl
 ```
 
-From BOFH to vulture wrangler? Seems like worthwhile pursuit.
+From BOFH to vulture wrangler? Seems like a worthwhile pursuit.

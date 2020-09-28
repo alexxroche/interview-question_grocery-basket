@@ -1,0 +1,10 @@
+[
+    {
+        "name":"apples",
+        "baskets":[10,20,30]
+    },
+    {
+        "name":"bananas",
+        "baskets":[5,20,10,10]
+    }
+]

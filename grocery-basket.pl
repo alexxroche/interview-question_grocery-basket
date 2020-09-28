@@ -54,9 +54,9 @@ Fetch actual answer to the interview question
 
 =cut
 
-`git clone $answer_repo`;
-`cd interview-question_grocery-basket`;
-`for cmd in fmt check test run;do cargo \$cmd; done`;
+`git clone $answer_repo && \
+cd interview-question_grocery-basket && \
+for cmd in fmt check test run;do cargo \$cmd; done`;
 
 =head1 SEE ALSO
 

@@ -15,8 +15,8 @@ Tools used to get the answer
 
 =cut
 
-my $install_rust = 'curl --proto \'=https\' --tlsv1.2 -sSf https://sh.rustup.rs | sh';
-my $answer_repo = 'git@github.com:alexxroche/interview-question_grocery-basket.git';
+my $install_rust = 'curl --proto https --tlsv1.2 -sSf https://sh.rustup.rs | sh ; rustup install stable && rustup default stable';
+my $answer_repo = 'https://www.github.com/alexxroche/interview-question_grocery-basket.git';
 
 =head2 getopts_short
 
@@ -34,17 +34,23 @@ Verify that we have all that we need
 
 =cut
 
-print("Would you like me to install\e[1;32m git\e[0m for you? [Y/n] ");
-my $yn1 = <STDIN>;
-chomp $yn1;
-if ($yn1!~m/n/) {
-    print `which git && printf "\n[i] git already installed\n" ||sudo apt install -y git`;
+my $git_which = `which git 2>/dev/null`;
+if ($git_which!~m/git/) {
+    print("Would you like me to install\e[1;32m git\e[0m for you? [Y/n] ");
+    my $yn1 = <STDIN>;
+    chomp $yn1;
+    if ($yn1!~m/n/) {
+        print `which git && printf "\n[i] git already installed\n" ||sudo apt install -y git ||sudo yum install -y git`;
+    }
 }
-print("You are probably going to rewrite many things in\e[0;33m rust\e[0m, so I might as well install that for you, (if it is missing). Should I proced? [Y/n] ");
-my $yn2 = <STDIN>;
-chomp $yn2;
-if ($yn2!~m/n/) {
-    print `which rustc && echo '[i] rustc installed; Maybe do a quick \e[1;36mrustup &\e[0m ?' ||$install_rust`;
+my $rust_which = `which rustc 2>/dev/null`;
+if ($rust_which!~m/rust/) {
+    print("You are probably going to rewrite many things in\e[0;33m rust\e[0m, so I might as well install that for you, (if it is missing). Should I proced? [Y/n] ");
+    my $yn2 = <STDIN>;
+    chomp $yn2;
+    if ($yn2!~m/n/) {
+        print `which rustc && echo '[i] rustc installed; Maybe do a quick \e[1;36mrustup &\e[0m ?' ||$install_rust`;
+    }
 }
 
 =head2 fetch answer
@@ -55,7 +61,9 @@ Fetch actual answer to the interview question
 
 `git clone $answer_repo && \
 cd interview-question_grocery-basket && \
-for cmd in fmt check test run;do cargo \$cmd; done`;
+rustup install stable && \
+rustup default stable && \
+for cmd in fmt check test run;do cargo \$cmd; done`; # for cmd in fmt check test run;do cargo $cmd; done
 
 =head1 SEE ALSO
 
